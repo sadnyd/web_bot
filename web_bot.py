@@ -3,11 +3,11 @@ while 1>0:
             import pyautogui as p
             import pytesseract as pt
             import time
+            import xlrd
             
 
             class Test:
-
-
+             
                 def imgrecog(self):
                     x=50
                     lt=""
@@ -20,12 +20,35 @@ while 1>0:
                         print(text)
                         print("l ",lt," l")
                     return text
-               
+                        
+
+                def tcheck(self,text):
+                    texto='this sentence is not there in the check, want me to add?'
+                    textc=""
+                    text= text.lower()
+                    # print(text)
+                    # time.sleep(0.5)
+                    wb=xlrd.open_workbook(".\excel.xls")
+                    sheet= wb.sheet_by_index(0)
+                    n=sheet.nrows
+                    print(n)
+                    # time.sleep(2)
+                    for i in range(n):
+                        textc=str(sheet.cell_value(i,0)).lower().strip(" ")
+                        print(textc)
+                        # time.sleep(2)
+                        if text==textc:
+                            texto=str(sheet.cell_value(i,1)).lower()
+                            break
+                    print("\n",texto,"    output")
+                    # time.sleep(2)
+                    return texto
+
 
 
             t1= Test()
-            t1.imgrecog()
             time.sleep(0.2)
-         
+            t1.tcheck(t1.imgrecog())
+           
     except:
         print("error")
