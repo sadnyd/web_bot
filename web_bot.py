@@ -7,7 +7,11 @@ while 1>0:
             
 
             class Test:
-             
+                # def ss(self,x):
+                #     img = p.screenshot("img.png",region=(1380,890,x,30))
+                #     return img
+
+
                 def imgrecog(self):
                     x=50
                     lt=""
@@ -45,10 +49,18 @@ while 1>0:
                     return texto
 
 
+                def keyout(self,texto):
+                    p.typewrite(texto)
+                    p.press('enter')
+
 
             t1= Test()
+            # t1.ss()
+            #t1.imgrecog()
             time.sleep(0.2)
-            t1.tcheck(t1.imgrecog())
-           
+            #t1.tcheck(t1.imgrecog())
+            t1.keyout(t1.tcheck(t1.imgrecog()))
+    except:
+        print("error")
     except:
         print("error")
